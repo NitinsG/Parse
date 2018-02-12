@@ -42,4 +42,21 @@ end
 p hello # "Hello again"
 p ruby  # Error Undefined
 
+#If blocks were scope gates, then puts hi would produce an error because the hi variable is in a separate scope. 
+#Yet, this is not the case, and you can see that by running the code above.
+
+#Not only can you access outside variables, but change their content as well! Try putting hi = '456' inside do/end and its content will be changed.
+
+#What if you don’t want blocks to modify outside variables? Block-local variables can help. 
+#To define block-local variables, put a semicolon at the end of the block’s parameters (the block below has only 1 parameter, i) and then just list them:
+
+hi = 'hi'
+hello ='hello'
+3.times do |i; hi, hello|
+  p i
+  hi = 'hi again'
+  hello = 'hello again'
+end
+p hi # "hi"
+p hello # "hello"
 
