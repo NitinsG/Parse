@@ -78,3 +78,15 @@ a == b # true: but these two distinct objects have equal values
 /\d+/ === "123" # true: the string matches the regular expression 
 String === "s" # true: "s" is an instance of the class String 
 :s === "s" # true in Ruby 1.9
+
+
+# Object Ordering
+# In Ruby, classes define an ordering by implementing the <=> operator. 
+# This operator should return –1 if its left operand is less than its right operand, 0 if the two operands are equal, 
+# and 1 if the left operand is greater than the right operand. If the two operands cannot be meaningfully compared 
+# (if the right operand is of a different class, for example), then the operator should return nil:
+1 <=> 5  # -1
+5 <=> 5  # 0
+9 <=> 5  # 1
+"1" <=> 5  # nil integers and strings are not comparable
+
