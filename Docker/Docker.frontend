@@ -1,0 +1,28 @@
+#------------------------
+Builder
+FROM node:argon
+
+ENV APP_HOME /app
+
+RUN mkdir -p $APP_HOME/dist
+
+WORKDIR $APP_HOME
+
+COPY . $APP_HOME
+
+CMD npm install && npm install -g bower && git config --global url."https://".insteadOf git:// && bower install --allow-root && npm install --global gulp-cli && gulp build
+
+# docker build -t hfront -f Dockerfile . 
+# docker run -it -v ${PWD}:/app hfront /bin/bash
+#-------------------------
+Frontend
+FROM nginx:1.10.1
+
+ENV NGINX_VERSION=1.10.1
+
+ADD nginx.conf /etc/nginx/nginx.conf
+
+#docker run -it --env-file .env -e API_PORT=8000 -v ${PWD}/dist:/usr/share/nginx/html -p 80:80 --link 4fb1bbd05d11:br hfront
+
+
+
