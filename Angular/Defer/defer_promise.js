@@ -98,3 +98,35 @@ var askDad = function () {
 askDad();
 
 
+/*
+
+ Angular Defer
+ Same concept : Action has been performed and retuned a promised value (promise can be resolve , reject, notify) , based upon that promise returned futher actions can be excuted.
+
+*/
+
+sampleApplication.factory('SampleFactory', function ($http, $q, $log, API_URL) {
+
+    var session = undefined;
+
+    return {
+        getSession: function () {
+            var deferred = $q.defer();
+            if (session) {
+                deferred.resolve(session);
+            } else {
+                $http.get(API_URL + 'status').then(function (respond) {
+                    session = respond.data.sessionId;
+                    deferred.resolve(respond.data.sessionId);
+                }, function (error, code) {
+                    deferred.reject(error);
+                    $log.error(error, code);
+                });
+            }
+
+            return deferred.promise;
+
+        }
+    };
+})
+
