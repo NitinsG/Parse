@@ -51,4 +51,16 @@ $ mkdir my-project && cd $_
 
 $ yo angular
 
+$ npm install grunt --save-dev
 
+Add to package.json
+"dependencies": {
+    "time-grunt": "^1.3.0"
+ },
+
+$ npm install
+
+$ bower install
+
+$ grunt serve
+*/
