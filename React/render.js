@@ -1,4 +1,4 @@
-/*
+
 The ReactDOM.render() method takes three parameters: 
    1. a ReactElement, 
    2. a regular DOMElement, 
@@ -27,4 +27,4 @@ Transformation of the JSX syntax into valid JavaScript syntax must happen before
 
 Babel is used here for the transformation of JSX into valid javascript code even before minifaction.
 
-*/
+

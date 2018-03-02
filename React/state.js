@@ -1,11 +1,11 @@
-/*
+
 
 How can we add a state to our stateless React elements? 
 
 If we can't encapsulate a state in React elements, then we should encapsulate React elements in something that already has a state. 
 Think of a simple state machine that represents a user interface. Every user action triggers a change of a state in that state machine. 
 Every state is represented by a different React element. In the React library, this state machine is called a React Component.
-*/
+
 
 stateless React component
 
@@ -21,7 +21,7 @@ var ReactClass = React.createClass({
 var reactComponentElement = React.createElement(ReactClass);
 var reactComponent = ReactDOM.render(reactComponentElement, document.getElementById('react-application'));
 
-/*
+
 Some of the preceding code should already look familiar to you, and the rest can be broken down into three simple steps:
 
 1. Creating a React class.
@@ -44,7 +44,7 @@ Let's take a closer look at how we can create a React component:
 
 The specification object encapsulates a component's state and describes how a component is rendered. At the very minimum, the React component needs to have a render() method so that it returns at least null or false. Here is an example of a speci cation object in its simplest form:
 
-*/   
+   
     {
      render: function () {
        return null;
@@ -60,7 +60,7 @@ It can return null, as in the preceding example, and nothing will be rendered. O
      } 
    }
 
-/*
+
 This example shows how we can encapsulate our React element inside our React component.
 
 We create a ReactElement of type h1 with the properties object and a ReactText as its only child. Then, we return it when the render() method of our React component is called. 
@@ -73,7 +73,7 @@ The advantage of having a render() function is that, as with any other function,
 So far, you've seen two examples of the render() function: 
 
 one that returns null and one that returns a React element. We can merge the two and add a condition that decides what to render:
-*/
+
   
    {
      render: function () {
@@ -88,7 +88,7 @@ one that returns null and one that returns a React element. We can merge the two
    }
 
 
-/*
+
 
 There are two ways to pass data to a render() function using the React API: 
 
@@ -98,7 +98,7 @@ There are two ways to pass data to a render() function using the React API:
 Any data that you put in the props object and pass to the React.createElement() function can be accessed inside the render() function of ReactComponent via this.props. 
 
 Once you have accessed data from this.props, you can render it:
-*/
+
  
  {
    render: function () {
@@ -121,7 +121,7 @@ Once you have accessed data from this.props, you can render it:
      } 
   }
 
-// We can also use this.props to compute data that needs to be rendered: 
+We can also use this.props to compute data that needs to be rendered: 
 
    {
      render: function () {
@@ -133,7 +133,7 @@ Once you have accessed data from this.props, you can render it:
      }
    }
 
-/*
+
 
 Creating your first stateful React component
 
@@ -142,9 +142,9 @@ Stateful components are the most appropriate place for your application to handl
 React stores the component's state in this.state, and it sets the initial value of this.state to the value returned by the getInitialState() function. 
 
 However, it's up to us to tell React what the getInitialState() function will return.
-*/
 
-// Let's add this function to our React component:
+
+Let's add this function to our React component:
 
    {
      getInitialState: function () {
@@ -160,7 +160,7 @@ However, it's up to us to tell React what the getInitialState() function will re
      } 
    }
 
-/*
+
 Notice that in our render() function, we're now referring to this.state.isHidden instead of this.props.isHidden.
 
 So, what is the difference between the two?
@@ -182,5 +182,5 @@ There is a common way of informing React of a state change using setState(data, 
   It calls the component's render() function every time you update the component's state, 
   including any child components which are rerendered as well. 
   In fact, it rerenders the entire virtual DOM every time our render() function is called.
-*/
+
 

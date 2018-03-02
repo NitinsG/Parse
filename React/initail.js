@@ -1,4 +1,4 @@
-/*
+
 There are two types of events that we're interested in:
 
 • User events: When a user types, clicks, scrolls, resizes, and so on
@@ -21,7 +21,7 @@ Let's take a look at how it works:
 3. React updates only what needs to be updated in the real DOM.
 
 Browserify that allows us to import all the dependency modules for our application using the require() function. We'll be using require() to import the React library as well, which means that, instead of adding a <script> tag to our index.html, we'll be using the npm install command to install React:
-*/
+
 
 npm install --save react@0.14.0-beta3 react-dom@0.14.0-beta3
 
@@ -30,7 +30,7 @@ app.js
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-/*
+
 Just like the DOM is a tree of nodes, React's virtual DOM is a tree of React nodes. 
 One of the core types in React is called ReactNode. It's a building block for a virtual DOM, and it can be any one of these core types:
 
@@ -39,14 +39,14 @@ One of the core types in React is called ReactNode. It's a building block for a 
 
 ReactElements and ReactTexts are ReactNodes. An array of ReactNodes is called a ReactFragment.
 
-*/
+
 
 var reactElement = React.createElement('h1');
 ReactDOM.render(reactElement, document.getElementById('react-application'));
 
 <h1 data-reactid=".0"></h1>
 
-/*
+
 
 The entry point to the React library is the React object. 
 This object has a method called createElement() that takes three parameters: type, props, and children:
@@ -88,7 +88,7 @@ We've created three React elements: h1, p, and section. h1 and p both have child
      <h1 class="header" data-reactid=".0.$header">This is React</h1>
      <p class="content" data-reactid=".0.$content">And that's how it works.</p>
    </section>
-*/
+
 
 var listItemElement1 = React.createElement('li', { className: 'item-1', key: 'item-1' }, 'Item 1');
 var listItemElement2 = React.createElement('li', { className: 'item-2', key: 'item-2' }, 'Item 2');
