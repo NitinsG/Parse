@@ -1,4 +1,4 @@
-
+/*
 
 How can we add a state to our stateless React elements? 
 
@@ -8,6 +8,7 @@ Every state is represented by a different React element. In the React library, t
 
 
 stateless React component
+*/
 
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -21,7 +22,7 @@ var ReactClass = React.createClass({
 var reactComponentElement = React.createElement(ReactClass);
 var reactComponent = ReactDOM.render(reactComponentElement, document.getElementById('react-application'));
 
-
+/*
 Some of the preceding code should already look familiar to you, and the rest can be broken down into three simple steps:
 
 1. Creating a React class.
@@ -42,8 +43,10 @@ Let's take a closer look at how we can create a React component:
 3. Create a ReactComponent by calling the ReactDOM.render() function and providing our ReactComponentElement as its element parameter.
 
 
-The specification object encapsulates a component's state and describes how a component is rendered. At the very minimum, the React component needs to have a render() method so that it returns at least null or false. Here is an example of a speci cation object in its simplest form:
-
+The specification object encapsulates a component's state and describes how a component is rendered. 
+At the very minimum, the React component needs to have a render() method so that it returns at least null or false. 
+Here is an example of a speci cation object in its simplest form:
+*/
    
     {
      render: function () {
@@ -51,8 +54,8 @@ The specification object encapsulates a component's state and describes how a co
      }
     }
 
-The render() function is responsible for telling React how to render your React component. 
-It can return null, as in the preceding example, and nothing will be rendered. Or it can return a ReactElement.
+//The render() function is responsible for telling React how to render your React component. 
+//It can return null, as in the preceding example, and nothing will be rendered. Or it can return a ReactElement.
 
    {
      render: function () {
@@ -60,10 +63,11 @@ It can return null, as in the preceding example, and nothing will be rendered. O
      } 
    }
 
-
+/*
 This example shows how we can encapsulate our React element inside our React component.
 
-We create a ReactElement of type h1 with the properties object and a ReactText as its only child. Then, we return it when the render() method of our React component is called. 
+We create a ReactElement of type h1 with the properties object and a ReactText as its only child. 
+Then, we return it when the render() method of our React component is called. 
 The fact that we encapsulated our React element inside a React component doesn't affect how it will be rendered:
 
 <h1 class="header" data-reactid=".0">React Component</h1>
@@ -73,7 +77,7 @@ The advantage of having a render() function is that, as with any other function,
 So far, you've seen two examples of the render() function: 
 
 one that returns null and one that returns a React element. We can merge the two and add a condition that decides what to render:
-
+*/
   
    {
      render: function () {
@@ -89,7 +93,7 @@ one that returns null and one that returns a React element. We can merge the two
 
 
 
-
+/*
 There are two ways to pass data to a render() function using the React API: 
 
 • this.props
@@ -98,7 +102,7 @@ There are two ways to pass data to a render() function using the React API:
 Any data that you put in the props object and pass to the React.createElement() function can be accessed inside the render() function of ReactComponent via this.props. 
 
 Once you have accessed data from this.props, you can render it:
-
+*/
  
  {
    render: function () {
@@ -121,7 +125,7 @@ Once you have accessed data from this.props, you can render it:
      } 
   }
 
-We can also use this.props to compute data that needs to be rendered: 
+// We can also use this.props to compute data that needs to be rendered: 
 
    {
      render: function () {
@@ -134,17 +138,19 @@ We can also use this.props to compute data that needs to be rendered:
    }
 
 
-
+/*
 Creating your first stateful React component
 
-Stateful components are the most appropriate place for your application to handle the interaction logic and manage the state. They make it easier for you to reason out how your application works. This reasoning plays a key role in building maintainable web applications.
+Stateful components are the most appropriate place for your application to handle the interaction logic and manage the state. 
+They make it easier for you to reason out how your application works. 
+This reasoning plays a key role in building maintainable web applications.
 
 React stores the component's state in this.state, and it sets the initial value of this.state to the value returned by the getInitialState() function. 
 
 However, it's up to us to tell React what the getInitialState() function will return.
 
-
 Let's add this function to our React component:
+*/
 
    {
      getInitialState: function () {
@@ -160,7 +166,7 @@ Let's add this function to our React component:
      } 
    }
 
-
+/*
 Notice that in our render() function, we're now referring to this.state.isHidden instead of this.props.isHidden.
 
 So, what is the difference between the two?
@@ -183,4 +189,64 @@ There is a common way of informing React of a state change using setState(data, 
   including any child components which are rerendered as well. 
   In fact, it rerenders the entire virtual DOM every time our render() function is called.
 
+Imagine that this is our current state:
+*/
+  {
+     isHidden: true,
+     title: 'Stateful React Component'
+  }
+
+// We call this.setState(nextState) where nextState is as follows:
+   
+   {
+     isHidden: false
+   }
+
+// React will merge the two states into a new one:
+
+  {
+     isHidden: false,
+     title: 'Stateful React Component'
+  }
+
+// The isHidden property is updated and the title property is not deleted or updated in any way.
+// Now that we know how to update our component's state, let's create a stateful component that reacts to a user event:
+
+ {
+     getInitialState: function () {             // 
+       return {
+         isHeaderHidden: false,
+         title: 'Stateful React Component'
+       }; 
+     },
+     handleClick: function () {
+       this.setState({
+         isHeaderHidden: !this.state.isHeaderHidden
+       });
+     },
+     render: function () {
+       var headerElement = React.createElement('h1', { className:'header', key: 'header' }, this.state.title);
+       var buttonElement = React.createElement('button', { className:'btn btn-default', onClick: this.handleClick, key: 'button' }, 'Toggleheader');
+       if (this.state.isHeaderHidden) {
+         return React.createElement('div', null, [ buttonElement ]);
+        }
+       return React.createElement('div', null, [ buttonElement, headerElement ]);
+     }
+ }
+
+/*
+In React, you can attach event handlers to a React element by passing them to the props parameter in the createElement() function:
+
+   React.createElement('button', { className: 'btn btn-default', onClick: this.handleClick }, 'Toggle header');
+
+By default, React triggers the event handlers in the bubble phase, 
+but you can tell React to trigger them in the capture phase by appending Capture to the event name; for example, onClickCapture.
+
+React wraps a browser's native events into the SyntheticEvent object to ensure that all the supported events behave identically in Internet Explorer 8 and above.
+
+The SyntheticEvent object provides the same API as the native browser's event, 
+which means that you can use the stopPropagation() and preventDefault() methods as usual. 
+If for some reason, you need to access that native browser's event, then you can do this via the nativeEvent property. 
+To enable touch-event handling, simply call React.initializeTouchEvents(true).
+*/
 

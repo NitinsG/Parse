@@ -1,4 +1,4 @@
-
+/*
 There are two types of events that we're interested in:
 
 • User events: When a user types, clicks, scrolls, resizes, and so on
@@ -21,7 +21,7 @@ Let's take a look at how it works:
 3. React updates only what needs to be updated in the real DOM.
 
 Browserify that allows us to import all the dependency modules for our application using the require() function. We'll be using require() to import the React library as well, which means that, instead of adding a <script> tag to our index.html, we'll be using the npm install command to install React:
-
+*/
 
 npm install --save react@0.14.0-beta3 react-dom@0.14.0-beta3
 
@@ -30,7 +30,7 @@ app.js
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-
+/*
 Just like the DOM is a tree of nodes, React's virtual DOM is a tree of React nodes. 
 One of the core types in React is called ReactNode. It's a building block for a virtual DOM, and it can be any one of these core types:
 
@@ -38,16 +38,14 @@ One of the core types in React is called ReactNode. It's a building block for a 
 • ReactText: This is a string or a number. It represents textual content and it's a virtual representation of a Text Node in the DOM.
 
 ReactElements and ReactTexts are ReactNodes. An array of ReactNodes is called a ReactFragment.
-
-
+*/
 
 var reactElement = React.createElement('h1');
 ReactDOM.render(reactElement, document.getElementById('react-application'));
 
 <h1 data-reactid=".0"></h1>
 
-
-
+/*
 The entry point to the React library is the React object. 
 This object has a method called createElement() that takes three parameters: type, props, and children:
 
@@ -71,6 +69,8 @@ Warning: Unknown DOM property class. Did you mean className? Use className inste
 children:
 The children parameter describes what child elements this element should have, if any. A child element can be any type of ReactNode: a virtual DOM element represented by a ReactElement, a string or a number represented by a ReactText, or an array of other ReactNodes, which is also called ReactFragment.
 
+*/
+
 var reactElement = React.createElement('h1', { className: 'header' }, 'This is React');
 ReactDOM.render(reactElement, document.getElementById('react-application'));
 
@@ -82,8 +82,13 @@ var reactFragment = [ h1, p ];
 var section = React.createElement('section', { className: 'container' }, reactFragment);
 ReactDOM.render(section, document.getElementById('react-application'));
 
-We've created three React elements: h1, p, and section. h1 and p both have child text nodes, "This is React" and "And that's how it works.", respectively. The section has a child that is an array of two ReactElements, h1 and p, called reactFragment. This is also an array of ReactNodes. Each ReactElement in the reactFragment array must have a key property that helps React to identify that ReactElement. As a result, we get the following HTML markup:
-   
+/*
+We've created three React elements: h1, p, and section. h1 and p both have child text nodes, "This is React" and "And that's how it works.", respectively. 
+The section has a child that is an array of two ReactElements, h1 and p, called reactFragment. 
+This is also an array of ReactNodes. 
+Each ReactElement in the reactFragment array must have a key property that helps React to identify that ReactElement. 
+As a result, we get the following HTML markup:
+*/   
    <section class="container" data-reactid=".0">
      <h1 class="header" data-reactid=".0.$header">This is React</h1>
      <p class="content" data-reactid=".0.$content">And that's how it works.</p>
