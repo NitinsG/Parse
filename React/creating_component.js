@@ -114,6 +114,14 @@ In the Collection component, these callback functions are this.props.onRemoveTwe
  
    module.exports = Stream;
 
+/*
+The componentDidMount() method is part of React's API. It's one of the React component's lifecycle methods. 
+It's called only once, immediately after React has finished the initial rendering of our component. 
+At this point, React has created a DOM tree, which is represented by our component, and now we can access that DOM with another JavaScript library.
+componentDidMount() is a perfect place for integrating React with another JavaScript library. 
+*/
+
+
 
 
 
