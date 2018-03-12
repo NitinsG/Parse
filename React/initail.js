@@ -91,7 +91,7 @@ As a result, we get the following HTML markup:
 */   
    <section class="container" data-reactid=".0">
      <h1 class="header" data-reactid=".0.$header">This is React</h1>
-     <p class="content" data-reactid=".0.$content">And that's how it works.</p>
+     <p class="content" data-reactid=".0.$content">And thats how it works.</p>
    </section>
 
 
