@@ -2,8 +2,7 @@
    var TweetActionCreators = require('../actions/TweetActionCreators');
    
    function initializeStreamOfTweets() {    
-     SnapkiteStreamClient.initiali
-     zeStream(TweetActionCreators.receiveTweet);
+     SnapkiteStreamClient.initializeStream(TweetActionCreators.receiveTweet);
    }
    
    module.exports = {
