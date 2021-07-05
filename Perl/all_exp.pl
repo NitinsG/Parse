@@ -20,4 +20,4 @@ This is perl on-liner that is used for counting hits per seconds. Can also be us
  cat corpus.txt|perl -e 'while (<>) { map { $c{lc($_)} += 1 } split (/[^\w]+/) };map { print $_ . "\t" . $c{$_} . "\n" } keys %c' | sort -k 2 -n -r
  cat test_sample.txt | perl -n -e 'map { print lc($_) . "\n" } split(/[^\w]+/)' | perl -n -e 'chomp($_);if(exists($hef{$_})){$hef{$_}++}else{ $hef{$_}=1};END{ foreach $key (keys %hef) { print "$key \t $hef{$key}\n"}}'| sort -k 2 -n -r
  
- sed '/^$/d' UninorWapSite.log.2012-12-02 | awk -F',' '{print $1}' | perl -n -e  '$_=<>;chomp($_);if(exists($hef{$_})){$hef{$_}++}else{ $hef{$_}=1};END{ foreach $key (keys %hef) {print "$key => $hef{$key}\n"}}'
+ sed '/^$/d' UWapSite.log.2012-12-02 | awk -F',' '{print $1}' | perl -n -e  '$_=<>;chomp($_);if(exists($hef{$_})){$hef{$_}++}else{ $hef{$_}=1};END{ foreach $key (keys %hef) {print "$key => $hef{$key}\n"}}'
